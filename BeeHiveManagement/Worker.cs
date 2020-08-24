@@ -9,7 +9,7 @@ namespace BeeHiveManagement
 {
     class Worker
     {
-        string currentJob;
+        private string currentJob = "";
         public string CurrentJob
         {
             get
@@ -17,19 +17,19 @@ namespace BeeHiveManagement
                 return currentJob;
             }
         }
-
-        int shiftsLeft;
+        
+        //int shiftsLeft;
         public int ShiftsLeft
         {
             get
             {
-                return shiftsLeft;
+                return  shiftsToWork - shiftsWorked;
             }
         }
 
-        string[] jobsICanDo;
+        private string[] jobsICanDo;
         private int shiftsToWork;
-        int shiftsWorked;
+        private int shiftsWorked;
 
         public Worker(string[] jobsICanDo)
         {
@@ -38,34 +38,35 @@ namespace BeeHiveManagement
         public bool DoThisJob(string jobToDo, int shiftsToWork)
         {
             if (!string.IsNullOrEmpty(CurrentJob))
-            {
                 return false;
-            }
 
             for (int i = 0; i < jobsICanDo.Length; i++)
                 {
                 if (jobsICanDo[i]==jobToDo)
                 {
                     currentJob = jobToDo;
-                    shiftsLeft = shiftsToWork;
                     this.shiftsToWork = shiftsToWork;
+                    shiftsWorked = 0;
                     return true;
                 }
             }
             return false;
         }
-        
+
         public bool DidYouFinish()
         {
-            shiftsLeft -=1;
-            shiftsWorked += 1;
-
-            if (shiftsLeft == 0)
+             if (string.IsNullOrEmpty(currentJob))
+                return false;
+            shiftsWorked++;
+            if (shiftsWorked > shiftsToWork)
             {
+                shiftsWorked = 0;
+                shiftsToWork = 0;
                 currentJob = "";
                 return true;
             }
-            return false;
+            else
+                return false;
         }
     }
 }

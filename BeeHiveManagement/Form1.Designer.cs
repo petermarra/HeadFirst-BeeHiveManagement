@@ -66,7 +66,7 @@
             "Hive maintenance",
             "Honey manufacturing",
             "Nector collector",
-            "Sting patrol "});
+            "Sting patrol"});
             this.workerBeeJob.Location = new System.Drawing.Point(24, 76);
             this.workerBeeJob.Name = "workerBeeJob";
             this.workerBeeJob.Size = new System.Drawing.Size(158, 21);

@@ -13,7 +13,8 @@ namespace BeeHiveManagement
     public partial class Form1 : Form
     {
 
-        Queen queen;
+        private Queen queen;
+        
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace BeeHiveManagement
         {
             if (!queen.AssignWork(workerBeeJob.Text, (int)shifts.Value))
             {
-                MessageBox.Show($"Unable to assign {workerBeeJob.Text} for {shifts.Value} shifts");
+                MessageBox.Show($"Unable to assign {workerBeeJob.Text} for {shifts.Value} shifts","The queen says..");
             }
         }
     }
